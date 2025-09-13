@@ -1,0 +1,113 @@
+# Solana DApp with Wallet Connection
+
+A simple decentralized application (DApp) built with React and TypeScript that supports Solana wallet connections and SOL transfers.
+
+## Features
+
+ **Wallet Connection**
+- Connect button in the upper right corner
+- Support for multiple wallets (Phantom, Solflare, Torus, Ledger)
+- Social login integration via Privy (Google, Twitter, Discord, Email)
+- Clean modal interface for wallet selection
+
+ **Transfer Functionality**
+- Simple SOL transfer interface
+- Real-time transaction confirmation
+- Transaction explorer links for verification
+
+ **Disconnect & Account Switching**
+- Proper disconnect functionality
+- Automatic detection of wallet account changes
+- Seamless reconnection with new accounts
+
+## Tech Stack
+
+- **React 19** with TypeScript
+- **Tailwind CSS** for styling
+- **Solana Web3.js** for blockchain interaction
+- **Solana Wallet Adapter** for wallet integration
+- **Privy** for social login
+- **React App Rewired** for custom webpack configuration
+
+## Installation
+
+1. Install dependencies:
+```bash
+npm install --legacy-peer-deps
+```
+
+2. Configure environment variables (optional):
+Create a `.env` file with your own Privy App ID:
+```
+REACT_APP_PRIVY_APP_ID=your_privy_app_id_here
+REACT_APP_SOLANA_NETWORK=devnet
+```
+
+## Running the Application
+
+Start the development server:
+```bash
+npm start
+```
+
+The app will open at http://localhost:3000
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── WalletConnectionModal.tsx  # Wallet selection modal
+│   └── TransferComponent.tsx      # SOL transfer interface
+├── providers/
+│   └── WalletProvider.tsx         # Solana wallet context provider
+├── App.tsx                         # Main application component
+├── index.tsx                       # Application entry point
+└── index.css                       # Global styles with Tailwind
+```
+
+## Usage
+
+1. **Connect Wallet**
+   - Click the "Connect" button in the upper right corner
+   - Choose between social login or Web3 wallet
+   - For social login: Select your preferred platform (Google, Twitter, Discord, Email)
+   - For Web3 wallet: Select from available wallets (Phantom, Solflare, etc.)
+
+2. **Transfer SOL**
+   - After connecting, the transfer interface will appear
+   - Enter recipient's Solana address
+   - Enter amount of SOL to send
+   - Click "Send SOL" to execute the transfer
+   - View transaction confirmation with explorer link
+
+3. **Disconnect/Switch Account**
+   - Click "Disconnect" to disconnect current wallet
+   - When switching accounts in Phantom, disconnect first then reconnect
+   - The app will automatically detect the new account
+
+## Network Configuration
+
+The app is configured to use Solana Devnet by default. To change networks:
+1. Update the network in `src/providers/WalletProvider.tsx`
+2. Change `WalletAdapterNetwork.Devnet` to your desired network
+
+## Important Notes
+
+- This DApp runs on Solana Devnet for testing
+- Make sure you have Devnet SOL for testing transfers
+- Get free Devnet SOL from: https://solfaucet.com/
+- Phantom wallet is recommended for the best experience
+
+## Troubleshooting
+
+If you encounter compilation errors:
+1. Make sure you're using Node.js version 16 or higher
+2. Use `npm install --legacy-peer-deps` for dependency conflicts
+3. Clear node_modules and package-lock.json, then reinstall
+
+## Security Considerations
+
+- Never share your private keys or seed phrases
+- Always verify transaction details before confirming
+- This is a demo app - use appropriate security measures for production
