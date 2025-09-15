@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { PrivyProvider } from '@privy-io/react-auth';
+import { toSolanaWalletConnectors } from '@privy-io/react-auth/solana';
 import { WalletContextProvider } from './WalletProvider';
 
 interface CombinedWalletProviderProps {
@@ -22,15 +23,29 @@ export const CombinedWalletProvider: FC<CombinedWalletProviderProps> = ({ childr
           accentColor: '#7c3aed', // Purple-600
           logo: undefined, // You can add your logo URL here
           showWalletLoginFirst: false, // Show social login first
+          walletChainType: 'solana-only', // Focus on Solana for external wallets
         },
-        // Configure embedded wallet settings
+        // Configure embedded wallet settings (MPC wallets for social login)
         embeddedWallets: {
-          createOnLogin: 'users-without-wallets', // Create wallet for new users
+          createOnLogin: 'users-without-wallets', // Create MPC wallet for social login users
           requireUserPasswordOnCreate: false, // No password required for MPC wallets
+          showWalletUIs: true, // Allow users to see their embedded wallet
+        },
+        // Configure external wallet connections (Phantom, Solflare, etc.)
+        externalWallets: {
+          solana: {
+            // Enable external Solana wallet connections using Privy's Solana connectors helper
+            connectors: toSolanaWalletConnectors(),
+          },
         },
         // MPC wallet configuration
         mfa: {
           noPromptOnMfaRequired: false,
+        },
+        // Legal and compliance settings
+        legal: {
+          termsAndConditionsUrl: undefined,
+          privacyPolicyUrl: undefined,
         },
       }}
     >

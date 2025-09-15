@@ -1,56 +1,83 @@
-# Solana DApp with Wallet Connection
+# Solana dApp with Wallet Connection & Social Login
 
-A simple decentralized application (DApp) built with React and TypeScript that supports Solana wallet connections and SOL transfers.
+A modern Solana decentralized application featuring both traditional Web3 wallet connections and social login through Privy MPC wallets.
 
-## Features
+## 🚀 Quick Start
 
- **Wallet Connection**
-- Connect button in the upper right corner
-- Support for multiple wallets (Phantom, Solflare, Torus, Ledger)
-- Social login integration via Privy (Google, Twitter, Discord, Email)
-- Clean modal interface for wallet selection
+```bash
+# Install dependencies
+yarn install
 
- **Transfer Functionality**
-- Simple SOL transfer interface
-- Real-time transaction confirmation
-- Transaction explorer links for verification
+# Start development server
+yarn dev
+# OR
+yarn start
 
- **Disconnect & Account Switching**
-- Proper disconnect functionality
-- Automatic detection of wallet account changes
-- Seamless reconnection with new accounts
+# Build for production
+yarn build
+```
 
-## Tech Stack
+The app will be available at: **http://localhost:3000**
 
-- **React 19** with TypeScript
+## ✨ Features
+
+### 🔗 Dual Wallet System
+- **Traditional Web3 Wallets**: Phantom, MetaMask, and other Solana-compatible wallets
+- **Social Login**: Email, Google, Twitter, Apple via Privy MPC wallets
+- **Seamless Integration**: Both wallet types work together in the same interface
+
+### 🎨 User Experience
+- **Upper Right Connect Button**: Clean, accessible wallet connection
+- **Modal Overlay**: In-page wallet selection (no redirects)
+- **Social Login Priority**: "Login with email or social" as the first option
+- **Purple Theme**: Consistent #7c3aed branding throughout
+- **Mobile Responsive**: Works on all device sizes
+
+### 🔐 Security & Privacy
+- **MPC Wallets**: Multi-party computation for enhanced security
+- **Non-Custodial**: Users maintain control of their private keys
+- **Environment Variables**: Secure configuration management
+- **No Sensitive Data**: Client-side code contains no secrets
+
+## 🛠 Technical Architecture
+
+### Core Technologies
+- **React 18.2.0** with TypeScript
+- **Vite 7.1.5** for lightning-fast development
 - **Tailwind CSS** for styling
-- **Solana Web3.js** for blockchain interaction
-- **Solana Wallet Adapter** for wallet integration
-- **Privy** for social login
-- **React App Rewired** for custom webpack configuration
+- **Solana Wallet Adapter** for Web3 wallet integration
+- **Privy SDK** for social authentication and MPC wallets
 
-## Installation
+### Key Components
 
-1. Install dependencies:
+#### 1. CombinedWalletProvider (`src/providers/CombinedWalletProvider.tsx`)
+- Unifies Privy and Solana wallet adapters
+- Handles provider hierarchy and context management
+- Configures social login methods and embedded wallets
+
+#### 2. WalletConnectionButton (`src/components/WalletConnectionButton.tsx`)
+- Main UI component for wallet connection
+- Modal-based wallet selection interface
+- Handles both social and traditional wallet flows
+
+#### 3. WalletContext (`src/contexts/WalletContext.tsx`)
+- Central state management for wallet connections
+- Provides hooks for accessing wallet state
+- Manages authentication status across providers
+
+### Environment Configuration
+Create a `.env.local` file with your Privy App ID:
 ```bash
-npm install --legacy-peer-deps
+VITE_PRIVY_APP_ID=your_privy_app_id_here
 ```
 
-2. Configure environment variables (optional):
-Create a `.env` file with your own Privy App ID:
-```
-REACT_APP_PRIVY_APP_ID=your_privy_app_id_here
-REACT_APP_SOLANA_NETWORK=devnet
-```
+## 📋 Available Scripts
 
-## Running the Application
-
-Start the development server:
-```bash
-npm start
-```
-
-The app will open at http://localhost:3000
+- `yarn dev` - Start development server (Vite)
+- `yarn start` - Alternative start command  
+- `yarn build` - Build for production
+- `yarn preview` - Preview production build
+- `yarn test` - Run test suite
 
 ## Project Structure
 
